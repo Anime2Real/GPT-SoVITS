@@ -118,6 +118,7 @@ import numpy as np
 import soundfile as sf
 from fastapi import FastAPI, Response
 from fastapi.responses import StreamingResponse, JSONResponse
+from starlette.concurrency import run_in_threadpool
 import uvicorn
 from io import BytesIO
 from tools.i18n.i18n import I18nAuto
@@ -438,7 +439,9 @@ async def tts_handle(req: dict):
             )
 
         else:
-            sr, audio_data = next(tts_generator)
+            # 非流式合成是重计算，同步执行会阻塞事件循环期间所有其他请求，
+            # 丢线程池等待（流式分支由 StreamingResponse 自行在线程池消费，无需处理）
+            sr, audio_data = await run_in_threadpool(next, tts_generator)
             audio_data = pack_audio(BytesIO(), audio_data, sr, media_type).getvalue()
             return Response(audio_data, media_type=f"audio/{media_type}")
     except Exception as e:
