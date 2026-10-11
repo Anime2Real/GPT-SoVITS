@@ -195,7 +195,8 @@ if (-not (Test-Path "GPT_SoVITS/text/G2PWModel")) {
 }
 
 if ($DownloadUVR5) {
-    if (-not (Test-Path "tools/uvr5/uvr5_weights")) {
+    $UVR5Weights = @(Get-ChildItem -Path "tools/uvr5/uvr5_weights" -Recurse -File -Force -ErrorAction SilentlyContinue | Where-Object { $_.Name -ne ".gitignore" })
+    if ($UVR5Weights.Count -eq 0) {
         Write-Info "Downloading UVR5 Models..."
         Invoke-Download -Uri $UVR5URL -OutFile "uvr5_weights.zip"
         Invoke-Unzip "uvr5_weights.zip" "tools/uvr5"

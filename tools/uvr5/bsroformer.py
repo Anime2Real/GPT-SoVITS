@@ -275,7 +275,7 @@ class Roformer_Loader:
             if self.model_type is None:
                 # if model_type is still None, raise an error
                 raise ValueError(
-                    "Error: Unknown model type. If you are using a model without a configuration file, Ensure that your model name includes 'bs_roformer', 'bsroformer', 'mel_band_roformer', or 'melbandroformer'. Otherwise, you can manually place the model configuration file into 'tools/uvr5/uvr5w_weights' and ensure that the configuration file is named as '<model_name>.yaml' then try it again."
+                    "Error: Unknown model type. If you are using a model without a configuration file, Ensure that your model name includes 'bs_roformer', 'bsroformer', 'mel_band_roformer', or 'melbandroformer'. Otherwise, you can manually place the model configuration file into 'tools/uvr5/uvr5_weights' and ensure that the configuration file is named as '<model_name>.yaml' then try it again."
                 )
             self.config = self.get_default_config()
         else:

@@ -527,9 +527,10 @@ class CUDAGraphRunner:
                 newly_done_indices = newly_done_mask.nonzero()
 
                 if newly_done_indices.numel() > 0:
-                    session.y_results[newly_done_indices[0]] = session.y[
-                        newly_done_indices[0], session.y_len : -1
-                    ].squeeze(0)
+                    for newly_done_index in newly_done_indices:
+                        session.y_results[newly_done_index] = session.y[
+                            newly_done_index, session.y_len : -1
+                        ].squeeze(0)
                     session.completed[newly_done_indices] = True
 
                 if torch.all(session.completed).item():

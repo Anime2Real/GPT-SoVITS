@@ -142,7 +142,7 @@ host = args.bind_addr
 argv = sys.argv
 
 if config_path in [None, ""]:
-    config_path = "GPT-SoVITS/configs/tts_infer.yaml"
+    config_path = "GPT_SoVITS/configs/tts_infer.yaml"
 
 tts_config = TTS_Config(config_path)
 print(tts_config)
@@ -481,11 +481,11 @@ async def tts_get_endpoint(
 ):
     req = {
         "text": text,
-        "text_lang": text_lang.lower(),
+        "text_lang": text_lang.lower() if text_lang is not None else text_lang,
         "ref_audio_path": ref_audio_path,
         "aux_ref_audio_paths": aux_ref_audio_paths,
         "prompt_text": prompt_text,
-        "prompt_lang": prompt_lang.lower(),
+        "prompt_lang": prompt_lang.lower() if prompt_lang is not None else prompt_lang,
         "top_k": top_k,
         "top_p": top_p,
         "temperature": temperature,

@@ -282,7 +282,7 @@ fi
 
 if [ "$DOWNLOAD_UVR5" = "true" ]; then
     if find -L "tools/uvr5/uvr5_weights" -mindepth 1 ! -name '.gitignore' | grep -q .; then
-        echo -e"${INFO}UVR5 Models Exists"
+        echo -e "${INFO}UVR5 Models Exists"
         echo -e "${INFO}Skip Downloading UVR5 Models"
     else
         echo -e "${INFO}Downloading UVR5 Models..."
@@ -359,7 +359,7 @@ PYOPENJTALK_PREFIX=$(python -c "import os, pyopenjtalk; print(os.path.dirname(py
 echo -e "${INFO}Downloading NLTK Data..."
 rm -rf nltk_data.zip
 run_wget_quiet "$NLTK_URL" -O nltk_data.zip
-unzip -q -o nltk_data -d "$PY_PREFIX"
+unzip -q -o nltk_data.zip -d "$PY_PREFIX"
 rm -rf nltk_data.zip
 echo -e "${SUCCESS}NLTK Data Downloaded"
 

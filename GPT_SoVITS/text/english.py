@@ -25,8 +25,11 @@ NAMECACHE_PATH = os.path.join(current_file_path, "namedict_cache.pickle")
 
 # 适配中文及 g2p_en 标点
 rep_map = {
-    "[;:：，；]": ",",
-    '["’]': "'",
+    "：": ",",
+    "；": ",",
+    "，": ",",
+    '"': "'",
+    "’": "'",
     "。": ".",
     "！": "!",
     "？": "?",
