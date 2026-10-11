@@ -372,7 +372,7 @@ V1/V2/V3/V4 ortamından V2Pro'ya geçiş:
 UVR5 için Web Arayüzünü açmak için komut satırını kullanın
 
 ```bash
-python tools/uvr5/webui.py "<infer_device>" <is_half> <webui_port_uvr5>
+python tools/uvr5/webui.py "<infer_device>" <is_half> <webui_port_uvr5> <is_share>
 ```
 
 <!-- Bir tarayıcı açamıyorsanız, UVR işleme için aşağıdaki formatı izleyin,Bu ses işleme için mdxnet kullanıyor
@@ -383,13 +383,18 @@ python mdxnet.py --model --input_root --output_vocal --output_ins --agg_level --
 Veri setinin ses segmentasyonu komut satırı kullanılarak bu şekilde yapılır
 
 ```bash
-python audio_slicer.py \
-    --input_path "<orijinal_ses_dosyası_veya_dizininin_yolu>" \
-    --output_root "<alt_bölümlere_ayrılmış_ses_kliplerinin_kaydedileceği_dizin>" \
-    --threshold <ses_eşiği> \
-    --min_length <her_bir_alt_klibin_minimum_süresi> \
-    --min_interval <bitişik_alt_klipler_arasındaki_en_kısa_zaman_aralığı>
-    --hop_size <ses_eğrisini_hesaplamak_için_adım_boyutu>
+python tools/slice_audio.py \
+    "<orijinal_ses_dosyası_veya_dizininin_yolu>" \
+    "<alt_bölümlere_ayrılmış_ses_kliplerinin_kaydedileceği_dizin>" \
+    <ses_eşiği> \
+    <her_bir_alt_klibin_minimum_süresi> \
+    <bitişik_alt_klipler_arasındaki_en_kısa_zaman_aralığı> \
+    <ses_eğrisini_hesaplamak_için_adım_boyutu> \
+    <max_sil_kept> \
+    <_max> \
+    <alpha> \
+    <i_part> \
+    <all_part>
 ```
 
 Veri seti ASR işleme komut satırı kullanılarak bu şekilde yapılır (Yalnızca Çince)

@@ -372,7 +372,7 @@ V1/V2/V3/V4 환경에서 V2Pro로 전환 방법:
 명령줄을 사용하여 UVR5용 WebUI 열기
 
 ```bash
-python tools/uvr5/webui.py "<infer_device>" <is_half> <webui_port_uvr5>
+python tools/uvr5/webui.py "<infer_device>" <is_half> <webui_port_uvr5> <is_share>
 ```
 
 <!-- 브라우저를 열 수 없는 경우 UVR 처리를 위해 아래 형식을 따르십시오. 이는 오디오 처리를 위해 mdxnet을 사용하는 것입니다.
@@ -383,13 +383,18 @@ python mdxnet.py --model --input_root --output_vocal --output_ins --agg_level --
 명령줄을 사용하여 데이터세트의 오디오 분할을 수행하는 방법은 다음과 같습니다.
 
 ```bash
-python audio_slicer.py \
-    --input_path "<path_to_original_audio_file_or_directory>" \
-    --output_root "<directory_where_subdivided_audio_clips_will_be_saved>" \
-    --threshold <volume_threshold> \
-    --min_length <minimum_duration_of_each_subclip> \
-    --min_interval <shortest_time_gap_between_adjacent_subclips>
-    --hop_size <step_size_for_computing_volume_curve>
+python tools/slice_audio.py \
+    "<path_to_original_audio_file_or_directory>" \
+    "<directory_where_subdivided_audio_clips_will_be_saved>" \
+    <volume_threshold> \
+    <minimum_duration_of_each_subclip> \
+    <shortest_time_gap_between_adjacent_subclips> \
+    <step_size_for_computing_volume_curve> \
+    <max_sil_kept> \
+    <_max> \
+    <alpha> \
+    <i_part> \
+    <all_part>
 ```
 
 명령줄을 사용하여 데이터 세트 ASR 처리를 수행하는 방법입니다(중국어만 해당).

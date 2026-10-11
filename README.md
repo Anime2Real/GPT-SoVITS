@@ -393,7 +393,7 @@ Use v2Pro from v1/v2/v3/v4 environment:
 Use the command line to open the WebUI for UVR5
 
 ```bash
-python tools/uvr5/webui.py "<infer_device>" <is_half> <webui_port_uvr5>
+python tools/uvr5/webui.py "<infer_device>" <is_half> <webui_port_uvr5> <is_share>
 ```
 
 <!-- If you can't open a browser, follow the format below for UVR processing,This is using mdxnet for audio processing
@@ -404,13 +404,18 @@ python mdxnet.py --model --input_root --output_vocal --output_ins --agg_level --
 This is how the audio segmentation of the dataset is done using the command line
 
 ```bash
-python audio_slicer.py \
-    --input_path "<path_to_original_audio_file_or_directory>" \
-    --output_root "<directory_where_subdivided_audio_clips_will_be_saved>" \
-    --threshold <volume_threshold> \
-    --min_length <minimum_duration_of_each_subclip> \
-    --min_interval <shortest_time_gap_between_adjacent_subclips>
-    --hop_size <step_size_for_computing_volume_curve>
+python tools/slice_audio.py \
+    "<path_to_original_audio_file_or_directory>" \
+    "<directory_where_subdivided_audio_clips_will_be_saved>" \
+    <volume_threshold> \
+    <minimum_duration_of_each_subclip> \
+    <shortest_time_gap_between_adjacent_subclips> \
+    <step_size_for_computing_volume_curve> \
+    <max_sil_kept> \
+    <_max> \
+    <alpha> \
+    <i_part> \
+    <all_part>
 ```
 
 Run dataset ASR with FunASR from the command line. Fun-ASR-Nano is the default for Chinese, English, Japanese, Korean, and automatic language detection; Cantonese keeps the classic FunASR backend.
